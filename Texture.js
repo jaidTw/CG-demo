@@ -24,7 +24,7 @@ var BlkType = Object.freeze({
 	22: "Sand",
 	23: "SoulSand",
 	24: "Sponge",
-	25: "Sponge_wet",
+	25: "SpongeWet",
 	26: "Stone",
 	27: "StoneBrick",
 	28: "PlanksAcacia",
@@ -115,10 +115,12 @@ function Texture(type) {
         this.image.src = "Textures/" + TexturePackName + "/blocks/soul_sand.png"
     else if(BlkType[type] == "Sponge")
         this.image.src = "Textures/" + TexturePackName + "/blocks/sponge.png"
-    else if(BlkType[type] == "Sponge")
+    else if(BlkType[type] == "SpongeWet")
         this.image.src = "Textures/" + TexturePackName + "/blocks/sponge_wet.png"
     else if(BlkType[type] == "Stone")
         this.image.src = "Textures/" + TexturePackName + "/blocks/stone.png"
+    else if(BlkType[type] == "StoneBrick")
+        this.image.src = "Textures/" + TexturePackName + "/blocks/stone_brick.png"
     else if(BlkType[type] == "PlanksAcacia")
         this.image.src = "Textures/" + TexturePackName + "/blocks/planks_acacia.png"
     else if(BlkType[type] == "PlanksBigOak")

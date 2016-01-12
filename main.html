@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+<head />
+<style> body {background-color:black;} </style>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+attribute vec4 vPosition;
+attribute vec4 vColor;
+attribute vec4 vNormal;
+attribute vec2 vTexCoord;
+attribute vec4 eyePosition;
+
+varying vec4 fColor;
+varying vec2 fTexCoord;
+
+uniform mat4 modelingMatrix;
+uniform mat4 viewingMatrix;
+uniform mat4 projectionMatrix;
+uniform vec4 lightPosition;
+uniform vec4 materialAmbient;
+uniform vec4 materialDiffuse;
+uniform vec4 materialSpecular;
+uniform float shininess;
+
+void main() {
+    vec4 L = normalize(lightPosition - vPosition); // Light vector
+    vec4 N = normalize(vNormal);	               // Normal vector
+	vec4 V = normalize(eyePosition - vPosition);   // Eye vector.
+    vec4 H = normalize(L + V);                     // Halfway vector in the modified Phong model
+
+    vec4 ambient = materialAmbient;
+
+    float Kd = max(dot(L, N), 0.0);
+    vec4  diffuse = Kd * materialDiffuse;
+	float Ks = pow(max(dot(N, H), 0.0), shininess);
+	vec4 specular = materialSpecular * Ks;
+
+    fColor = (ambient + diffuse + specular) * vColor;
+	fTexCoord = vTexCoord;
+    gl_Position = projectionMatrix * viewingMatrix * modelingMatrix * vPosition;
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+precision mediump float;
+varying vec4 fColor;
+varying vec2 fTexCoord;
+uniform sampler2D texture;
+
+void main() {
+    gl_FragColor = fColor * texture2D( texture, fTexCoord );
+}
+</script>
+
+<script id="aimv-shader" type="x-shader/x-vertex">
+attribute vec4 vPosition;
+
+void main() {
+    gl_Position = vPosition;
+}
+</script>
+
+<script id="aimf-shader" type="x-shader/x-fragment">
+precision mediump float;
+
+void main() {
+    gl_FragColor = vec4(1.0, 0.0, 1.0, 1.0);
+}
+</script>
+
+<script type="text/javascript" src="GLlib/webgl-utils.js"></script>
+<script type="text/javascript" src="GLlib/initShaders.js"></script>
+<script type="text/javascript" src="GLlib/MV.js"></script>
+<script type="text/javascript" src="PointerLock.js"></script>
+<script type="text/javascript" src="Math.js"></script>
+<script type="text/javascript" src="Map.js"></script>
+<script type="text/javascript" src="Texture.js"></script>
+<script type="text/javascript" src="Block.js"></script>
+<script type="text/javascript" src="Engine.js"></script>
+<script type="text/javascript" src="main.js"></script>
+</head>
+
+<body>
+<div id="lockElem">
+<div id="Inf" width="512" height="512" style="background-color:white; float:left; width:30%"> 
+Console <br/>
+Position :      <br/> <text id = "Pos">  </text>  <br/>
+ceilPosition :  <br/> <text id = "ceilPos">  </text>  <br/>
+eyePosition :   <br/> <text id = "eyePos">  </text>  <br/>
+faceVector :    <br/> <text id = "faceVec">  </text>  <br/>
+movementX :     <text id = "movementX">  </text> <br/>
+movementY :     <text id = "movementY">  </text> <br/>
+wheelDeltaX :   <text id = "wheelDeltaX">  </text> <br/>
+wheelDeltaY :   <text id = "wheelDeltaY">  </text> <br/>
+<br/>
+WSAD : move view <br/>
+mouse move : view rotating <br/>
+mouse wheel : scaling <br/>
+<button id="pLock" style="background-color:#6688aa">Pointer Lock</button>
+<br/><br/>
+Todo : <br/>
+object selection (destroy and place) <br/>
+parallel light <br/>
+inventory <br/>
+Texture bugs <br/>
+smoother move and jump <br/>
+</div>
+<canvas id="gl-canvas" width="512" height="512" style="float:left;">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+</div>
+
+</body>
+</html>

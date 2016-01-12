@@ -120,7 +120,7 @@ function Texture(type) {
     else if(BlkType[type] == "Stone")
         this.image.src = "Textures/" + TexturePackName + "/blocks/stone.png"
     else if(BlkType[type] == "StoneBrick")
-        this.image.src = "Textures/" + TexturePackName + "/blocks/stone_brick.png"
+        this.image.src = "Textures/" + TexturePackName + "/blocks/stonebrick.png"
     else if(BlkType[type] == "PlanksAcacia")
         this.image.src = "Textures/" + TexturePackName + "/blocks/planks_acacia.png"
     else if(BlkType[type] == "PlanksBigOak")

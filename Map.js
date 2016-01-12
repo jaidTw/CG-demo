@@ -4,6 +4,8 @@ function Map(x, y, z) {
 
 Map.prototype.addBlk = function(block) {
 	bpos = [block.pos[0], block.pos[1], block.pos[2]]
+	if(this.map[bpos])
+		return
 	this.map[bpos] = block
 }
 
@@ -15,6 +17,11 @@ Map.prototype.render = function(ceilpos) {
 					this.map[[x, y, z]].draw()
 					this.map[[x, y, z]].render()
 				}
+}
+
+Map.prototype.delBlk = function(bpos) {
+	if(this.map[bpos])
+		delete this.map[bpos]
 }
 
 /*

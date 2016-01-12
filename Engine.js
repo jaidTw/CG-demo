@@ -59,6 +59,8 @@ function handleMouseMove(event) {
 
     faceVec = multMatVec(rotateXZ3(movementX/10), faceVec)
     faceNormal = multMatVec(rotateXZ3(-90), faceVec)
+
+    up -= movementY/150
 }
 
 // This will only used for debugging
@@ -95,4 +97,18 @@ function fall() {
 
 function hasBlk(hpos) {
     return map.map[hpos]
+}
+
+function addBlock() {
+	var bpos = [Number(document.getElementById('addx').value),
+				Number(document.getElementById('addy').value),
+				Number(document.getElementById('addz').value)]
+	map.addBlk(new Block(Number(document.getElementById('blkType').value), bpos))
+}
+
+function delBlock() {
+	var bpos = [Number(document.getElementById('delx').value),
+				Number(document.getElementById('dely').value),
+				Number(document.getElementById('delz').value)]
+	map.delBlk(bpos)
 }

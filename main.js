@@ -4,7 +4,7 @@ var gl, program, aimprogram
 var pos = [0, -1, -1]
 var faceVec = [0, 0, -1]
 var faceNormal = multMatVec(rotateXZ3(-90), faceVec)
-var upPos = [0, 1, 0]
+var up = 0
 
 var vBuffer, cBuffer, nBuffer, tBuffer
 var vPosition, vColor, vNormal, vTexCoord
@@ -69,6 +69,8 @@ window.onload = function init() {
     document.addEventListener("mousemove", handleMouseMove, false)
     window.addEventListener("keydown", keyDown, false)
     document.getElementById('pLock').onclick = lockPointer
+    document.getElementById('addBlk').onclick = addBlock
+    document.getElementById('delBlk').onclick = delBlock
     //document.onwheel = handleWheel
 
     // init textures
@@ -78,9 +80,9 @@ window.onload = function init() {
     for(var x = -100; x <= 100; ++x)
         for(var z = -100; z <= 100; ++z)
             map.addBlk(new Block(1, [x, -1, z]))
-    //map.addBlk(new Block(0, [0, 0, -2]))
-    for(var x = -2; x <= 2; ++x)
-        map.addBlk(new Block(0, [x, 0, 1]))
+    
+    for(var x = 0; x <= textureTypes; ++x)
+        map.addBlk(new Block(x, [x % 10, Math.floor(x/10), -5]))
 
     enbaleGravity()
     
@@ -97,8 +99,11 @@ function render() {
     document.getElementById("ceilPos").innerHTML = ceilpos
     document.getElementById("eyePos").innerHTML = eyePos
     document.getElementById("faceVec").innerHTML = faceVec
+    document.getElementById("velocity").innerHTML = velocity
+    document.getElementById("accel").innerHTML = gravAccel + Accel
+    document.getElementById("up").innerHTML = up
 
-    var viewing = lookAt(eyePos, add(eyePos, faceVec), upPos)
+    var viewing = lookAt(eyePos, add(add(eyePos, faceVec), vec3(0, up, 0)), [0, 1, 0])
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
     
     gl.uniformMatrix4fv(modelingLoc, 0, flatten(modeling))

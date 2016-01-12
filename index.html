@@ -91,19 +91,85 @@ eyePosition :   <br/> <text id = "eyePos">  </text>  <br/>
 faceVector :    <br/> <text id = "faceVec">  </text>  <br/>
 movementX :     <text id = "movementX">  </text> <br/>
 movementY :     <text id = "movementY">  </text> <br/>
-wheelDeltaX :   <text id = "wheelDeltaX">  </text> <br/>
-wheelDeltaY :   <text id = "wheelDeltaY">  </text> <br/>
+Velocity :      <text id = "velocity">  </text> <br/>
+Acceleration :  <text id = "accel">  </text> <br/>
+Up :            <text id = "up">  </text> <br/>
+
 <br/>
 WSAD : move view <br/>
-mouse move : view rotating <br/>
-mouse wheel : scaling <br/>
+Space : jump <br/>
+mouse move : view control <br/>
 <button id="pLock" style="background-color:#6688aa">Pointer Lock</button>
 <br/><br/>
+Map modifying: <br/>
+<input id = "addx" type="text" size="2" value="0"></input>
+<input id = "addy" type="text" size="2" value="0"></input>
+<input id = "addz" type="text" size="2" value="0"></input>
+<select id="blkType">
+<option value = "0">Brick</option>
+<option value = "1">Dirt</option>
+<option value = "2">Clay</option>
+<option value = "3">CoalBlock</option>
+<option value = "4">CoalOre</option>
+<option value = "5">CobbleStone</option>
+<option value = "6">CobbleStoneMossy</option>
+<option value = "7">DiamondBlock</option>
+<option value = "8">DiamondOre</option>
+<option value = "9">EmeraldBlock</option>
+<option value = "10">EmeraldOre</option>
+<option value = "11">EndStone</option>
+<option value = "12">Glass</option>
+<option value = "13">GoldBlock</option>
+<option value = "14">GoldOre</option>
+<option value = "15">Ice</option>
+<option value = "16">IronBlock</option>
+<option value = "17">IronOre</option>
+<option value = "18">NetherBrick</option>
+<option value = "19">NetherRack</option>
+<option value = "20">Obsidian</option>
+<option value = "21">RedstoneOre</option>
+<option value = "22">Sand</option>
+<option value = "23">SoulSand</option>
+<option value = "24">Sponge</option>
+<option value = "25">Sponge_wet</option>
+<option value = "26">Stone</option>
+<option value = "27">StoneBrick</option>
+<option value = "28">PlanksAcacia</option>
+<option value = "29">PlanksBigOak</option>
+<option value = "30">PlanksBirch</option>
+<option value = "31">PlanksJungle</option>
+<option value = "32">PlanksOak</option>
+<option value = "33">PlanksSpruce</option>
+<option value = "34">GlowStone</option>
+<option value = "35">WoolBlack</option>
+<option value = "36">WoolBlue</option>
+<option value = "37">WoolBrown</option>
+<option value = "38">WoolCyan</option>
+<option value = "39">WoolGray</option>
+<option value = "40">WoolGreen</option>
+<option value = "41">WoolLightBlue</option>
+<option value = "42">WoolLime</option>
+<option value = "43">WoolMagenta</option>
+<option value = "44">WoolOrange</option>
+<option value = "45">WoolPink</option>
+<option value = "46">WoolPurple</option>
+<option value = "47">WoolRed</option>
+<option value = "48">WoolSilver</option>
+<option value = "49">WoolWhite</option>
+<option value = "50">WoolYellow</option>
+</select>
+<button id="addBlk" style="background-color:#00EF00">Add Block</button>
+<br/>
+<input id = "delx" type="text" size="2" value="0"></input>
+<input id = "dely" type="text" size="2" value="0"></input>
+<input id = "delz" type="text" size="2" value="0"></input>
+<button id="delBlk" style="background-color:#EF0000">Delete Block</button>
+<br/>
+<br/>
 Todo : <br/>
 object selection (destroy and place) <br/>
 parallel light <br/>
 inventory <br/>
-Texture bugs <br/>
 smoother move and jump <br/>
 </div>
 <canvas id="gl-canvas" width="512" height="512" style="float:left;">
